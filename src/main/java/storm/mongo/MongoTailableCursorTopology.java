@@ -1,4 +1,4 @@
-package storm.contrib.mongo;
+package storm.mongo;
 
 import static backtype.storm.utils.Utils.tuple;
 
