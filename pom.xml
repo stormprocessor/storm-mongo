@@ -7,9 +7,9 @@
     <version>0.1-SNAPSHOT</version>
   </parent>
 
-  <artifactId>storm-contrib-mongo</artifactId>
+  <artifactId>storm-mongo</artifactId>
   <packaging>jar</packaging>
-  <name>storm-contrib-mongo</name>
+  <name>storm-mongo</name>
   <description>Components for Storm integration with MongoDB</description>
 
   <dependencies>
