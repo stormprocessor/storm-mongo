@@ -16,7 +16,9 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 import com.mongodb.Mongo;
+import com.mongodb.MongoClient;
 import com.mongodb.MongoURI;
+import com.mongodb.ServerAddress;
 
 /**
  * 
@@ -35,7 +37,7 @@ public class MongoTailableCursorTopology {
 		
 		
 		// mongo stuff
-        Mongo mongo = new Mongo(new MongoURI("mongodb://127.0.0.1:27017"));
+        Mongo mongo = new MongoClient(new ServerAddress("localhost", 27017));
         mongo.dropDatabase("mongo_storm_tailable_cursor");
         final BasicDBObject options = new BasicDBObject("capped", true);
         options.put("size", 10000);

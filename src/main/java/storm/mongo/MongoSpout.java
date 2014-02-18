@@ -7,16 +7,16 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import backtype.storm.spout.SpoutOutputCollector;
 import backtype.storm.task.TopologyContext;
+import backtype.storm.topology.OutputFieldsDeclarer;
 import backtype.storm.topology.base.BaseRichSpout;
 import backtype.storm.utils.Utils;
-import backtype.storm.topology.OutputFieldsDeclarer;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.Bytes;
 import com.mongodb.DB;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
-import com.mongodb.Mongo;
+import com.mongodb.MongoClient;
 import com.mongodb.MongoException;
 
 /**
@@ -120,7 +120,7 @@ public abstract class MongoSpout extends BaseRichSpout {
 		this.collector = collector;
 		this.queue = new LinkedBlockingQueue<DBObject>(1000);
 		try {
-			this.mongoDB = new Mongo(this.mongoHost, this.mongoPort).getDB(this.mongoDbName);
+			this.mongoDB = new MongoClient(this.mongoHost, this.mongoPort).getDB(this.mongoDbName);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

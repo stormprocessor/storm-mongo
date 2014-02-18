@@ -2,16 +2,16 @@ package storm.mongo;
 
 import java.util.Map;
 
-import com.mongodb.DB;
-import com.mongodb.DBObject;
-import com.mongodb.Mongo;
-import com.mongodb.MongoException;
-import com.mongodb.WriteConcern;
-
 import backtype.storm.task.OutputCollector;
 import backtype.storm.task.TopologyContext;
 import backtype.storm.topology.base.BaseRichBolt;
 import backtype.storm.tuple.Tuple;
+
+import com.mongodb.DB;
+import com.mongodb.DBObject;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoException;
+import com.mongodb.WriteConcern;
 
 /**
  * A Bolt for recording input tuples to Mongo. Subclasses are expected to
@@ -48,7 +48,7 @@ public abstract class MongoBolt extends BaseRichBolt {
 		
 		this.collector = collector;
 		try {
-			this.mongoDB = new Mongo(mongoHost, mongoPort).getDB(mongoDbName);
+			this.mongoDB = new MongoClient(mongoHost, mongoPort).getDB(mongoDbName);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
